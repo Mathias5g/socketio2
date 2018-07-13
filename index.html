@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=IE11">
+    <title>Teste de Socket 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    #teste {
+        background-color: rgb(204, 162, 243);
+        width: 10px;
+    }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        function manda(valor) {
+            socket.emit('chat message', valor);    
+        }
+
+        socket.on('chat message', function(msg){
+            // alert('recebido');
+            document.getElementById('teste').innerHTML = msg + '<BR>';
+            document.getElementById('teste').style.width = msg + '1px';
+            
+        });
+
+
+    </script>
+</head>
+<body>
+    <h1>Teste</h1>
+          <input oninput="manda(this.value);" type="range" min="1" max="100" value="20" class="slider" id="myRange">
+          <p>Valor: <div id="teste"></div></p>
+
+</body>
+</html>
